@@ -1,0 +1,258 @@
+Initialized native services in: /Users/kaushikxo/.gradle/native
+Initialized jansi services in: /Users/kaushikxo/.gradle/native
+The client will now receive all logging from the daemon (pid: 27487). The daemon log file: /Users/kaushikxo/.gradle/daemon/9.7.1/daemon-27487.out.log
+Starting 9th build in daemon [uptime: 2 hrs 20 mins 42.077 secs, performance: 97%, GC rate: 0.00/s, heap usage: 3% of 2 GiB]
+Using 10 worker leases.
+Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+Now considering [/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new, /Users/kaushikxo/Desktop/proj 2, /Users/kaushikxo/Desktop/Scope - admin version copy 2] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/settings.gradle.kts'.
+Projects loaded. Root project using build file '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/build.gradle.kts'.
+Included projects: [root project 'ScopeLocal', project ':app']
+
+> Configure project :
+Evaluating root project 'ScopeLocal' using build file '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '8.7.3', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '2.0.21', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.0.21', apply: false]
+Resolved plugin [id: 'com.google.gms.google-services', version: '4.4.2', apply: false]
+
+> Configure project :app
+Evaluating project ':app' using build file '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build.gradle.kts'.
+Resolved plugin [id: 'com.android.application']
+Resolved plugin [id: 'org.jetbrains.kotlin.android']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose']
+Using default execution profile
+Using Kotlin Gradle Plugin gradle85 variant
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+All projects evaluated.
+Task name matched 'compileDebugKotlin'
+Selected primary task 'compileDebugKotlin' from project :
+Tasks to be executed: [task ':app:checkKotlinGradlePluginConfigurationErrors', task ':app:preBuild', task ':app:preDebugBuild', task ':app:checkDebugAarMetadata', task ':app:generateDebugResValues', task ':app:processDebugGoogleServices', task ':app:mapDebugSourceSetPaths', task ':app:generateDebugResources', task ':app:mergeDebugResources', task ':app:packageDebugResources', task ':app:parseDebugLocalResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':app:processDebugResources', task ':app:compileDebugKotlin']
+Tasks that were excluded: []
+Resolve mutations for :app:checkKotlinGradlePluginConfigurationErrors (Thread[#558,Execution worker Thread 2,5,main]) started.
+:app:checkKotlinGradlePluginConfigurationErrors (Thread[#558,Execution worker Thread 2,5,main]) started.
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':app:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :app:preBuild (Thread[#558,Execution worker Thread 2,5,main]) started.
+:app:preBuild (Thread[#559,Execution worker Thread 3,5,main]) started.
+
+> Task :app:preBuild UP-TO-DATE
+Skipping task ':app:preBuild' as it has no actions.
+Resolve mutations for :app:preDebugBuild (Thread[#557,Execution worker,5,main]) started.
+:app:preDebugBuild (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:preDebugBuild UP-TO-DATE
+Skipping task ':app:preDebugBuild' as it has no actions.
+Resolve mutations for :app:checkDebugAarMetadata (Thread[#557,Execution worker,5,main]) started.
+:app:checkDebugAarMetadata (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+Caching disabled for task ':app:checkDebugAarMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugAarMetadata' as it is up-to-date.
+Resolve mutations for :app:generateDebugResValues (Thread[#557,Execution worker,5,main]) started.
+:app:generateDebugResValues (Thread[#561,Execution worker Thread 5,5,main]) started.
+
+> Task :app:generateDebugResValues UP-TO-DATE
+Caching disabled for task ':app:generateDebugResValues' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResValues' as it is up-to-date.
+Resolve mutations for :app:processDebugGoogleServices (Thread[#561,Execution worker Thread 5,5,main]) started.
+:app:processDebugGoogleServices (Thread[#561,Execution worker Thread 5,5,main]) started.
+
+> Task :app:processDebugGoogleServices UP-TO-DATE
+Caching disabled for task ':app:processDebugGoogleServices' because:
+  Build cache is disabled
+Skipping task ':app:processDebugGoogleServices' as it is up-to-date.
+Resolve mutations for :app:mapDebugSourceSetPaths (Thread[#561,Execution worker Thread 5,5,main]) started.
+:app:mapDebugSourceSetPaths (Thread[#561,Execution worker Thread 5,5,main]) started.
+
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Caching disabled for task ':app:mapDebugSourceSetPaths' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:mapDebugSourceSetPaths' as it is up-to-date.
+Resolve mutations for :app:generateDebugResources (Thread[#561,Execution worker Thread 5,5,main]) started.
+:app:generateDebugResources (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:generateDebugResources UP-TO-DATE
+Caching disabled for task ':app:generateDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResources' as it is up-to-date.
+Resolve mutations for :app:mergeDebugResources (Thread[#557,Execution worker,5,main]) started.
+:app:mergeDebugResources (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:mergeDebugResources UP-TO-DATE
+Caching disabled for task ':app:mergeDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:mergeDebugResources' as it is up-to-date.
+Resolve mutations for :app:packageDebugResources (Thread[#557,Execution worker,5,main]) started.
+:app:packageDebugResources (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:packageDebugResources UP-TO-DATE
+Caching disabled for task ':app:packageDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:packageDebugResources' as it is up-to-date.
+Resolve mutations for :app:parseDebugLocalResources (Thread[#557,Execution worker,5,main]) started.
+:app:parseDebugLocalResources (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:parseDebugLocalResources UP-TO-DATE
+Caching disabled for task ':app:parseDebugLocalResources' because:
+  Build cache is disabled
+Skipping task ':app:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :app:createDebugCompatibleScreenManifests (Thread[#557,Execution worker,5,main]) started.
+:app:createDebugCompatibleScreenManifests (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Caching disabled for task ':app:createDebugCompatibleScreenManifests' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:createDebugCompatibleScreenManifests' as it is up-to-date.
+Resolve mutations for :app:extractDeepLinksDebug (Thread[#557,Execution worker,5,main]) started.
+:app:extractDeepLinksDebug (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+Caching disabled for task ':app:extractDeepLinksDebug' because:
+  Build cache is disabled
+Skipping task ':app:extractDeepLinksDebug' as it is up-to-date.
+Resolve mutations for :app:processDebugMainManifest (Thread[#557,Execution worker,5,main]) started.
+:app:processDebugMainManifest (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:processDebugMainManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugMainManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugMainManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifest (Thread[#557,Execution worker,5,main]) started.
+:app:processDebugManifest (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:processDebugManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifestForPackage (Thread[#557,Execution worker,5,main]) started.
+:app:processDebugManifestForPackage (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+Custom actions are attached to task ':app:processDebugManifestForPackage'.
+Caching disabled for task ':app:processDebugManifestForPackage' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifestForPackage' as it is up-to-date.
+Resolve mutations for :app:processDebugResources (Thread[#557,Execution worker,5,main]) started.
+:app:processDebugResources (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:processDebugResources UP-TO-DATE
+Registered task dependencies: app:debugCompileClasspath
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling
+Skipping misunderstood TO dep string: org.jetbrains.kotlin:kotlin-stdlib
+Skipping misunderstood TO dep string: androidx.compose.ui:ui
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling-preview
+Skipping misunderstood TO dep string: androidx.compose.foundation:foundation
+Skipping misunderstood TO dep string: androidx.compose.material3:material3
+Skipping misunderstood TO dep string: androidx.compose.material:material-icons-extended
+Skipping misunderstood TO dep string: com.google.firebase:firebase-auth
+Skipping misunderstood TO dep string: com.google.firebase:firebase-firestore
+Starting dependency analysis
+Caching disabled for task ':app:processDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugResources' as it is up-to-date.
+Resolve mutations for :app:compileDebugKotlin (Thread[#557,Execution worker,5,main]) started.
+:app:compileDebugKotlin (Thread[#557,Execution worker,5,main]) started.
+
+> Task :app:compileDebugKotlin FAILED
+GradleBuildProject.Builder should not be accessed through AnalyticsConfiguratorService after AnalyticsService is created. Analytics information of this build might be incomplete.
+Registered task dependencies: app:kotlinCompilerClasspath
+Starting dependency analysis
+Registered task dependencies: app:kotlinCompilerPluginClasspathDebug
+Starting dependency analysis
+Caching disabled for task ':app:compileDebugKotlin' because:
+  Build cache is disabled
+Task ':app:compileDebugKotlin' is not up-to-date because:
+  Task has failed previously.
+The input changes require a full rebuild for incremental task ':app:compileDebugKotlin'.
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/kotlin', not found
+file or directory '/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/debug/java', not found
+Kotlin source files: /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/MainActivity.kt, /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/model/Models.kt, /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/data/LocalStore.kt, /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/data/CloudRepository.kt
+Java source files: 
+Script source files: 
+Script file extensions: 
+Using Kotlin/JVM incremental compilation
+[KOTLIN] Kotlin compilation 'jdkHome' argument: null
+Options for KOTLIN DAEMON: IncrementalCompilationOptions(super=CompilationOptions(compilerMode=INCREMENTAL_COMPILER, targetPlatform=JVM, reportCategories=[0, 3], reportSeverity=2, requestedCompilationResults=[0], kotlinScriptExtensions=[]), areFileChangesKnown=false, modifiedFiles=null, deletedFiles=null, classpathChanges=NotAvailableForNonIncrementalRun, workingDir=/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build/kotlin/compileDebugKotlin/cacheable, multiModuleICSettings=MultiModuleICSettings(buildHistoryFile=/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin, useModuleDetection=true), usePreciseJavaTracking=true, icFeatures=IncrementalCompilationFeatures(withAbiSnapshot=false, preciseCompilationResultsBackup=true, keepIncrementalCompilationCachesInMemory=true, enableUnsafeIncrementalCompilationForMultiplatform=false), outputFiles=[/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build/tmp/kotlin-classes/debug, /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build/kotlin/compileDebugKotlin/cacheable, /Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/build/kotlin/compileDebugKotlin/local-state])
+e: file:///Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/MainActivity.kt:1097:9 Functions which invoke @Composable functions must be marked with the @Composable annotation
+e: file:///Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/MainActivity.kt:1106:26 @Composable invocations can only happen from the context of a @Composable function
+e: file:///Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/app/src/main/java/com/scopelocal/app/data/LocalStore.kt:406:29 Unresolved reference 'subjectToAttendanceIndex'.
+Finished executing kotlin compiler using DAEMON strategy
+
+[Incubating] Problems report is available at: file:///Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin' (registered by plugin 'org.jetbrains.kotlin.android').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1s
+15 actionable tasks: 1 executed, 14 up-to-date
+Watched directory hierarchies: [/Users/kaushikxo/Desktop/ScopeLocal-updated-v10-new, /Users/kaushikxo/Desktop/proj 2, /Users/kaushikxo/Desktop/Scope - admin version copy 2]

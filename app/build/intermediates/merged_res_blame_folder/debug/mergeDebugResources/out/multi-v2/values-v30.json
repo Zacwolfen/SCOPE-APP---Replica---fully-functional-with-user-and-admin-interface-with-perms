@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.scopelocal.app-mergeDebugResources-61:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "/Users/kaushikxo/.gradle/caches/9.7.1/transforms/b17f2f6df6ff6b9910ef91ddc03502a6/transformed/material3-release/res/values-v30/values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}

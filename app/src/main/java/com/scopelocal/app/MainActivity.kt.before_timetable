@@ -1,0 +1,1607 @@
+package com.scopelocal.app
+
+import android.net.Uri
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import android.graphics.BitmapFactory
+import java.io.File
+import java.io.FileOutputStream
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.scopelocal.app.data.LocalStore
+import com.scopelocal.app.model.Attendance
+import com.scopelocal.app.model.Course
+import com.scopelocal.app.model.Exam
+import com.scopelocal.app.model.Mark
+import com.scopelocal.app.model.Student
+import java.util.Locale
+
+private val Blue = Color(0xFF0D73B8)
+private val BrightBlue = Color(0xFF2196E5)
+private val Red = Color(0xFFE45B63)
+private val PageGray = Color(0xFFF7F7F7)
+private val RowGray = Color(0xFFF2F2F2)
+private val Border = Color(0xFFE0E0E0)
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.statusBarColor = android.graphics.Color.rgb(13, 115, 184)
+        window.navigationBarColor = android.graphics.Color.WHITE
+        setContent { ScopeLocalApp() }
+    }
+}
+
+@Composable
+fun ScopeLocalApp() {
+    val context = LocalContext.current
+    val store = remember { LocalStore(context) }
+    val nav = rememberNavController()
+
+    var drawer by remember { mutableStateOf(false) }
+    var demoSettings by remember { mutableStateOf(false) }
+
+    MaterialTheme(
+        colorScheme = lightColorScheme(
+            primary = BrightBlue,
+            background = Color.White
+        )
+    ) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .pointerInput(drawer) {
+                    detectHorizontalDragGestures { _, drag ->
+                        if (drag > 45) drawer = true
+                        if (drag < -45) drawer = false
+                    }
+                }
+        ) {
+            NavHost(
+                navController = nav,
+                startDestination = "home",
+                modifier = Modifier.fillMaxSize()
+            ) {
+                composable("home") {
+                    HomeScreen(
+                        store = store,
+                        onMenu = { drawer = true },
+                        onOpen = { nav.navigate(it) },
+                        onSecretSettings = { demoSettings = true }
+                    )
+                }
+
+                composable("profile") {
+                    DetailShell("Profile", { nav.popBackStack() }) {
+                        ProfileScreen(store)
+                    }
+                }
+
+                composable("fee_due") {
+                    DetailShell("Fee Dues", { nav.popBackStack() }) {
+                        FeeDuesScreen()
+                    }
+                }
+
+                composable("fee_paid") {
+                    DetailShell("Fee Paid", { nav.popBackStack() }) {
+                        FeePaidScreen()
+                    }
+                }
+
+                composable("courses") {
+                    DetailShell("Courses", { nav.popBackStack() }) {
+                        CoursesScreen()
+                    }
+                }
+
+                composable("completion") {
+                    DetailShell("Completion Status", { nav.popBackStack() }) {
+                        CompletionScreen()
+                    }
+                }
+
+                composable("attendance") {
+                    DetailShell("Attendance", { nav.popBackStack() }) {
+                        AttendanceScreen(store)
+                    }
+                }
+
+                composable("cumulative") {
+                    DetailShell("Cumulative Attendance", { nav.popBackStack() }) {
+                        CumulativeScreen(store)
+                    }
+                }
+
+                composable("hour") {
+                    DetailShell("Hour Attendance", { nav.popBackStack() }) {
+                        HourAttendanceScreen()
+                    }
+                }
+
+                composable("internal") {
+                    DetailShell("Internal Marks", { nav.popBackStack() }) {
+                        InternalMarksScreen(store)
+                    }
+                }
+
+                composable("exam") {
+                    DetailShell("Exam Details", { nav.popBackStack() }) {
+                        ExamDetailsScreen(store)
+                    }
+                }
+
+                composable("timetable") {
+                    DetailShell("Timetable", { nav.popBackStack() }) {
+                        TimetableScreen()
+                    }
+                }
+
+                composable("provisional") {
+                    DetailShell("Provisional Result", { nav.popBackStack() }) {
+                        UnavailableScreen("Provisional Result Not Available.")
+                    }
+                }
+
+                composable("revaluation") {
+                    DetailShell("Revaluation / Review / Re-Totaling", { nav.popBackStack() }) {
+                        UnavailableScreen("Revaluation / Review / Re-Totaling Results Not Available.")
+                    }
+                }
+
+                composable("hostel") {
+                    DetailShell("Hostel", { nav.popBackStack() }) {
+                        UnavailableScreen("Hostel Data Not Available.")
+                    }
+                }
+
+                composable("transport") {
+                    DetailShell("Transport", { nav.popBackStack() }) {
+                        UnavailableScreen("Transport Data Not Available.")
+                    }
+                }
+
+                composable("notifications") {
+                    DetailShell("Notification List", { nav.popBackStack() }) {
+                        UnavailableScreen("Notifications Data Not Available.")
+                    }
+                }
+
+                composable("attendance_editor") {
+                    DetailShell("Attendance Editor", { nav.popBackStack() }) {
+                        AttendanceEditorScreen(store)
+                    }
+                }
+
+                composable("photo_editor") {
+                    DetailShell("Profile Photo", { nav.popBackStack() }) {
+                        PhotoEditorScreen(store)
+                    }
+                }
+            }
+
+            if (drawer) {
+                DrawerOverlay(
+                    onClose = { drawer = false },
+                    onOpen = { route ->
+                        drawer = false
+                        nav.navigate(route)
+                    }
+                )
+            }
+
+            if (demoSettings) {
+                DemoSettingsDialog(
+                    onDismiss = { demoSettings = false },
+                    onAttendance = {
+                        demoSettings = false
+                        nav.navigate("attendance_editor")
+                    },
+                    onPhoto = {
+                        demoSettings = false
+                        nav.navigate("photo_editor")
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun PortalTopBar(
+    title: String,
+    onBack: (() -> Unit)? = null,
+    onMenu: (() -> Unit)? = null,
+    onLongPressTitle: (() -> Unit)? = null
+) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(64.dp)
+            .background(Blue),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            Modifier
+                .width(60.dp)
+                .fillMaxHeight()
+                .clickable(enabled = onBack != null || onMenu != null) {
+                    (onBack ?: onMenu)?.invoke()
+                },
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                if (onBack != null) Icons.Default.ArrowBack else Icons.Default.Menu,
+                null,
+                tint = Color.White,
+                modifier = Modifier.size(28.dp)
+            )
+        }
+
+        Text(
+            title,
+            color = Color.White,
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 8.dp)
+                .pointerInput(onLongPressTitle) {
+                    if (onLongPressTitle != null) {
+                        detectTapGestures(
+                            onLongPress = {
+                                onLongPressTitle.invoke()
+                            }
+                        )
+                    }
+                }
+        )
+
+        if (onBack != null) {
+            Icon(
+                Icons.Default.History,
+                null,
+                tint = Color.White,
+                modifier = Modifier
+                    .padding(end = 16.dp)
+                    .size(26.dp)
+            )
+        } else {
+            Icon(
+                Icons.Default.ExitToApp,
+                null,
+                tint = Color.White,
+                modifier = Modifier
+                    .padding(end = 18.dp)
+                    .size(26.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun DetailShell(title: String, onBack: () -> Unit, content: @Composable () -> Unit) {
+    Column(Modifier.fillMaxSize().background(Color.White)) {
+        PortalTopBar(title, onBack = onBack)
+        Box(Modifier.weight(1f).fillMaxWidth()) { content() }
+        Footer()
+    }
+}
+
+@Composable fun Footer() {
+    Box(Modifier.fillMaxWidth().height(52.dp).background(Red), contentAlignment = Alignment.Center) {
+        Text("Last Updated: 21-08-2026 23:13", color = Color.White, fontSize = 15.sp)
+    }
+}
+
+data class Feature(val title: String, val route: String, val icon: ImageVector)
+
+private val features = listOf(
+    Feature("Profile", "profile", Icons.Default.Badge), Feature("Fee Dues", "fee_due", Icons.Default.CurrencyRupee), Feature("Fee Paid", "fee_paid", Icons.Default.Payments),
+    Feature("Course List", "courses", Icons.Default.Groups), Feature("Course Status", "completion", Icons.Default.GridView), Feature("Timetable", "timetable", Icons.Default.CalendarMonth),
+    Feature("Attendance", "attendance", Icons.Default.AssignmentInd), Feature("Cumulative\nAttendance", "cumulative", Icons.Default.MedicalInformation), Feature("Hour Wise\nAttendance", "hour", Icons.Default.Badge),
+    Feature("Internal\nMarks", "internal", Icons.Default.CreditScore), Feature("Exam\nDetails", "exam", Icons.Default.CollectionsBookmark), Feature("Provisional\nResult", "provisional", Icons.Default.Description),
+    Feature("Revaluation /\nReview / Re-", "revaluation", Icons.Default.Description), Feature("Hostel", "hostel", Icons.Default.Bed), Feature("Transport", "transport", Icons.Default.DirectionsBus),
+    Feature("Notification\nList", "notifications", Icons.Default.Notifications), Feature("Logout", "home", Icons.Default.Logout)
+)
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HomeScreen(
+    store: LocalStore,
+    onMenu: () -> Unit,
+    onOpen: (String) -> Unit,
+    onSecretSettings: () -> Unit
+) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        PortalTopBar(
+            title = "Student Portal",
+            onMenu = onMenu,
+            onLongPressTitle = onSecretSettings
+        )
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
+            contentPadding = PaddingValues(10.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.weight(1f)
+        ) {
+            items(features) { feature ->
+                FeatureCard(feature) {
+                    if (feature.route == "home") {
+                        onMenu()
+                    } else {
+                        onOpen(feature.route)
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FeatureCard(feature: Feature, onClick: () -> Unit) {
+    Column(Modifier.fillMaxWidth().height(138.dp).shadow(2.dp, RoundedCornerShape(14.dp)).clip(RoundedCornerShape(14.dp)).background(Color(0xFFF7F7F7)).clickable { onClick() }.padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Box(Modifier.size(56.dp).clip(RoundedCornerShape(12.dp)).background(BrightBlue), contentAlignment = Alignment.Center) {
+            Icon(feature.icon, null, tint = Color.White, modifier = Modifier.size(28.dp))
+        }
+        Spacer(Modifier.height(8.dp))
+        Text(feature.title, fontSize = 13.5.sp, textAlign = TextAlign.Center, lineHeight = 16.sp, maxLines = 2)
+    }
+}
+
+@Composable
+fun DrawerOverlay(onClose: () -> Unit, onOpen: (String) -> Unit) {
+    Row(Modifier.fillMaxSize().background(Color(0x66000000))) {
+        Column(Modifier.fillMaxWidth(0.92f).fillMaxHeight().shadow(8.dp).background(Color.White).padding(horizontal = 18.dp)) {
+            PortalTopBar("Search", onBack = onClose)
+            Spacer(Modifier.height(14.dp))
+            OutlinedTextField(value = "", onValueChange = {}, placeholder = { Text("Search", color = BrightBlue) }, leadingIcon = { Icon(Icons.Default.Search, null, tint = BrightBlue) }, singleLine = true, shape = RoundedCornerShape(50), colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black, focusedBorderColor = Color.Black), modifier = Modifier.fillMaxWidth().height(56.dp))
+            Spacer(Modifier.height(10.dp))
+            LazyColumn { items(features.filter { it.route != "home" }) { f ->
+                Row(Modifier.fillMaxWidth().clickable { onOpen(f.route) }.padding(vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Box(Modifier.size(42.dp).clip(RoundedCornerShape(8.dp)).background(BrightBlue).border(1.5.dp, Color.White, RoundedCornerShape(8.dp)), contentAlignment = Alignment.Center) { Icon(f.icon, null, tint = Color.White, modifier = Modifier.size(24.dp)) }
+                    Spacer(Modifier.width(16.dp)); Text(f.title.replace("\n", " "), fontSize = 19.sp)
+                }
+            } }
+        }
+        Spacer(Modifier.weight(1f).clickable { onClose() })
+    }
+}
+
+@Composable
+fun ProfileScreen(store: LocalStore) {
+    var student by remember { mutableStateOf(store.student()) }
+    val imageContext = LocalContext.current
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .background(Color.White)
+            .padding(horizontal = 28.dp)
+    ) {
+        Spacer(Modifier.height(28.dp))
+
+        Box(
+            Modifier
+                .size(225.dp, 295.dp)
+                .align(Alignment.CenterHorizontally)
+                .clip(RoundedCornerShape(16.dp))
+                .background(BrightBlue)
+                .padding(5.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            if (!student.photoUri.isNullOrBlank()) {
+                val bitmap = remember(student.photoUri) {
+                    try {
+                        val uri = Uri.parse(student.photoUri)
+                        imageContext.contentResolver
+                            .openInputStream(uri)
+                            ?.use { BitmapFactory.decodeStream(it) }
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+
+                if (bitmap != null) {
+                    androidx.compose.foundation.Image(
+                        bitmap = bitmap.asImageBitmap(),
+                        contentDescription = "Profile photo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(12.dp))
+                    )
+                } else {
+                    Icon(
+                        Icons.Default.Person,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(100.dp)
+                    )
+                }
+            } else {
+                Icon(
+                    Icons.Default.Person,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.size(100.dp)
+                )
+            }
+        }
+
+        Spacer(Modifier.height(26.dp))
+
+        ProfileField(Icons.Default.Person, "Name", student.name)
+        ProfileField(Icons.Default.Transgender, "Gender", student.gender)
+        ProfileField(Icons.Default.Cake, "Date of Birth", student.dob)
+        ProfileField(Icons.Default.Badge, "Register No", student.registerNo)
+        ProfileField(Icons.Default.AccountBalance, "Institution", student.institution)
+        ProfileField(Icons.Default.School, "Program", student.program)
+        ProfileField(Icons.Default.Class, "Semester", student.semester)
+        ProfileField(Icons.Default.Groups, "Section", student.section)
+        ProfileField(Icons.Default.LocationOn, "Campus", student.campus)
+        ProfileField(Icons.Default.Person, "Parent's Name", student.parentName)
+        ProfileField(Icons.Default.Event, "Date of Admission", student.admissionDate)
+        ProfileField(Icons.Default.Star, "CGPA", student.cgpa)
+        ProfileField(Icons.Default.StarBorder, "SGPA", student.sgpa)
+
+        Spacer(Modifier.height(30.dp))
+    }
+}
+
+
+@Composable
+fun DemoSettingsDialog(
+    onDismiss: () -> Unit,
+    onAttendance: () -> Unit,
+    onPhoto: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text("Local Demo Settings")
+        },
+        text = {
+            Column {
+                Text(
+                    "Local-only controls",
+                    color = Color.Gray,
+                    fontSize = 13.sp
+                )
+
+                Spacer(Modifier.height(14.dp))
+
+                Button(
+                    onClick = onAttendance,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(
+                        Icons.Default.AssignmentInd,
+                        contentDescription = null
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text("Edit Attendance")
+                }
+
+                Spacer(Modifier.height(10.dp))
+
+                Button(
+                    onClick = onPhoto,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(
+                        Icons.Default.Person,
+                        contentDescription = null
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text("Change Profile Photo")
+                }
+            }
+        },
+        confirmButton = {},
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("CLOSE")
+            }
+        }
+    )
+}
+
+@Composable
+fun AttendanceEditorScreen(store: LocalStore) {
+    var rows by remember { mutableStateOf(store.attendance()) }
+    var editIndex by remember { mutableStateOf<Int?>(null) }
+
+    LazyColumn(
+        Modifier
+            .fillMaxSize()
+            .padding(horizontal = 12.dp)
+    ) {
+        item {
+            Text(
+                "Local Attendance Editor",
+                color = BrightBlue,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(
+                    start = 8.dp,
+                    top = 18.dp,
+                    bottom = 6.dp
+                )
+            )
+
+            Text(
+                "Changes are stored only on this device.",
+                color = Color.Gray,
+                fontSize = 13.sp,
+                modifier = Modifier.padding(
+                    start = 8.dp,
+                    bottom = 14.dp
+                )
+            )
+        }
+
+        itemsIndexed(rows) { i, a ->
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 10.dp)
+                    .shadow(1.dp, RoundedCornerShape(12.dp))
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(if (i % 2 == 0) Color.White else RowGray)
+                    .padding(14.dp)
+            ) {
+                Text(
+                    a.code,
+                    color = BrightBlue,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp
+                )
+
+                Spacer(Modifier.height(4.dp))
+
+                Text(
+                    a.name,
+                    fontSize = 15.sp,
+                    lineHeight = 20.sp
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                Row(
+                    Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "Present ${a.attended}/${a.conducted}",
+                        fontSize = 14.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    Text(
+                        String.format(Locale.US, "%.2f%%", a.percentage),
+                        color = BrightBlue,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp
+                    )
+
+                    Spacer(Modifier.width(8.dp))
+
+                    OutlinedButton(
+                        onClick = { editIndex = i }
+                    ) {
+                        Text("EDIT")
+                    }
+                }
+            }
+        }
+    }
+
+    editIndex?.let { index ->
+        AttendanceEditDialog(
+            a = rows[index],
+            onDismiss = { editIndex = null }
+        ) { conducted, attended ->
+            store.updateAttendance(index, conducted, attended)
+            rows = store.attendance()
+            editIndex = null
+        }
+    }
+}
+
+@Composable
+fun PhotoEditorScreen(store: LocalStore) {
+    val context = LocalContext.current
+    var student by remember { mutableStateOf(store.student()) }
+    var message by remember { mutableStateOf("") }
+
+    val picker = rememberLauncherForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            try {
+                val destination = File(context.filesDir, "profile_photo.jpg")
+
+                context.contentResolver.openInputStream(uri)?.use { input ->
+                    FileOutputStream(destination).use { output ->
+                        input.copyTo(output)
+                    }
+                }
+
+                store.put(
+                    "photoUri",
+                    Uri.fromFile(destination).toString()
+                )
+
+                student = store.student()
+                message = "Profile photo updated."
+            } catch (_: Exception) {
+                message = "Unable to update the profile photo."
+            }
+        }
+    }
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            "Local Profile Photo",
+            color = BrightBlue,
+            fontSize = 21.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        Text(
+            "Choose an image stored on this device.",
+            color = Color.Gray,
+            fontSize = 13.sp,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(Modifier.height(24.dp))
+
+        Box(
+            Modifier
+                .size(190.dp, 245.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(BrightBlue)
+                .padding(5.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            if (!student.photoUri.isNullOrBlank()) {
+                val bitmap = remember(student.photoUri) {
+                    try {
+                        context.contentResolver
+                            .openInputStream(Uri.parse(student.photoUri))
+                            ?.use { BitmapFactory.decodeStream(it) }
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+
+                if (bitmap != null) {
+                    androidx.compose.foundation.Image(
+                        bitmap = bitmap.asImageBitmap(),
+                        contentDescription = "Profile photo",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(12.dp))
+                    )
+                } else {
+                    Icon(
+                        Icons.Default.Person,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(80.dp)
+                    )
+                }
+            } else {
+                Icon(
+                    Icons.Default.Person,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.size(80.dp)
+                )
+            }
+        }
+
+        Spacer(Modifier.height(22.dp))
+
+        Button(
+            onClick = { picker.launch("image/*") }
+        ) {
+            Icon(
+                Icons.Default.Photo,
+                contentDescription = null
+            )
+
+            Spacer(Modifier.width(8.dp))
+
+            Text("Choose Photo")
+        }
+
+        if (message.isNotBlank()) {
+            Spacer(Modifier.height(12.dp))
+            Text(
+                message,
+                color = BrightBlue,
+                fontSize = 14.sp
+            )
+        }
+    }
+}
+
+@Composable fun ProfileField(icon: ImageVector, label: String, value: String) {
+    Row(Modifier.fillMaxWidth().padding(vertical = 10.dp), verticalAlignment = Alignment.Top) {
+        Icon(icon, null, tint = BrightBlue, modifier = Modifier.size(34.dp).padding(top = 3.dp))
+        Spacer(Modifier.width(28.dp))
+        Column { Text(label, color = BrightBlue, fontSize = 17.sp); Text(value, fontSize = 18.sp, lineHeight = 25.sp) }
+    }
+}
+
+private data class FeeItem(val date: String, val desc: String, val amount: Double)
+private val feeDues = listOf(
+    "2025-2026" to listOf(FeeItem("02-Apr-2026", "Exam Fees", 2950.0)),
+    "2024-2025" to listOf(FeeItem("06-Sep-2024", "Registration Fee", 10000.0), FeeItem("06-Sep-2024", "Tuition Fees", 350000.0))
+)
+private data class Receipt(val date: String, val receiptNo: String, val desc: String, val amount: Double)
+private val feePaidReceipts = listOf(
+    Receipt("11-11-2025", "2605", "Being Fee received from student for Exam Fees fee paid through online using Pay U with bank transaction id IGATMDTAW1 on 2025-11-09 20:45:17.31", 5100.0),
+    Receipt("07-05-2025", "891", "Being Fee received from student for Exam Fees fee paid through online using Pay U with bank transaction id IGASTYXMG3 on 2025-05-04 22:15:05.05", 3300.0),
+    Receipt("20-11-2024", "3110", "Being Fee received from student for Exam Fees fee paid through online using Pay U with bank transaction id IGASCEANK3 on 2024-11-17 12:31:02.532", 4050.0)
+)
+
+@Composable
+fun FeeDuesScreen() {
+    val expanded = remember { mutableStateMapOf<String, Boolean>() }
+    LazyColumn(Modifier.fillMaxSize()) {
+        feeDues.forEach { (year, items) ->
+            val total = items.sumOf { it.amount }
+            item {
+                Row(Modifier.fillMaxWidth().clickable { expanded[year] = !(expanded[year] ?: true) }.padding(horizontal = 18.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(year, color = BrightBlue, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                    Text(String.format(Locale.US, "%.2f", total), color = BrightBlue, fontSize = 19.sp, fontWeight = FontWeight.Bold)
+                    Spacer(Modifier.width(6.dp))
+                    Icon(if (expanded[year] ?: true) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown, null, tint = BrightBlue)
+                }
+                Divider(color = Border)
+            }
+            if (expanded[year] ?: true) {
+                items.forEachIndexed { i, f ->
+                    item {
+                        Row(Modifier.fillMaxWidth().background(if (i % 2 == 0) RowGray else Color.White).padding(horizontal = 18.dp, vertical = 14.dp)) {
+                            Text(f.date, fontSize = 15.sp, modifier = Modifier.width(120.dp))
+                            Text(f.desc, fontSize = 15.sp, modifier = Modifier.weight(1f))
+                            Text(String.format(Locale.US, "%.2f", f.amount), fontSize = 15.sp)
+                        }
+                        Divider(color = Border)
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FeePaidScreen() {
+    val total = feePaidReceipts.sumOf { it.amount }
+    Column(Modifier.fillMaxSize()) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 14.dp)) {
+            Text("Receipt", color = BrightBlue, fontSize = 19.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            Text(String.format(Locale.US, "%.2f", total), color = BrightBlue, fontSize = 19.sp, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.width(6.dp)); Icon(Icons.Default.KeyboardArrowUp, null, tint = BrightBlue)
+        }
+        Divider(color = Border)
+        LazyColumn {
+            itemsIndexed(feePaidReceipts) { i, r ->
+                Row(Modifier.fillMaxWidth().background(if (i % 2 == 0) RowGray else Color.White).padding(horizontal = 12.dp, vertical = 14.dp)) {
+                    Text(r.date, fontSize = 13.sp, modifier = Modifier.width(64.dp))
+                    Text(r.receiptNo, fontSize = 13.sp, modifier = Modifier.width(44.dp))
+                    Text(r.desc, fontSize = 13.sp, modifier = Modifier.weight(1f).padding(horizontal = 4.dp))
+                    Text(String.format(Locale.US, "%.2f", r.amount), fontSize = 13.sp)
+                }
+                Divider(color = Border)
+            }
+        }
+    }
+}
+
+private val coursesBySem = mapOf(
+    "Semester: 1" to listOf(Course("21LEH104T", "GERMAN", 1), Course("21MAB101T", "CALCULUS AND LINEAR ALGEBRA", 4), Course("21CYB101J", "CHEMISTRY", 3), Course("21BTB102T", "INTRODUCTION TO COMPUTATIONAL BIOLOGY", 3), Course("21CSS101J", "PROGRAMMING FOR PROBLEM SOLVING", 4), Course("21GNH101J", "PHILOSOPHY OF ENGINEERING", 2), Course("21MES101L", "BASIC CIVIL AND MECHANICAL WORKSHOP", 2), Course("21PDM101L", "PROFESSIONAL SKILLS AND PRACTICES", 2), Course("21GNM101L", "PHYSICAL AND MENTAL HEALTH USING YOGA", 0)),
+    "Semester: 2" to listOf(Course("21CYM101T", "ENVIRONMENTAL SCIENCE", 2), Course("21MES102L", "ENGINEERING GRAPHICS AND DESIGN", 4), Course("21LEH101T", "COMMUNICATIVE ENGLISH", 2), Course("21MAB102T", "ADVANCED CALCULUS AND COMPLEX ANALYSIS", 4), Course("21PYB102J", "SEMICONDUCTOR PHYSICS AND COMPUTATIONAL METHODS", 3), Course("21EES101T", "ELECTRICAL AND ELECTRONICS ENGINEERING", 4), Course("21CSC101T", "OBJECT ORIENTED DESIGN AND PROGRAMMING", 4)),
+    "Semester: 3" to listOf(Course("21MAB201T", "TRANSFORMS AND BOUNDARY VALUE PROBLEMS", 4), Course("21CSC201J", "DATA STRUCTURES AND ALGORITHMS", 4), Course("21CSC202J", "OPERATING SYSTEMS", 4), Course("21CSS201T", "COMPUTER ORGANIZATION AND ARCHITECTURE", 4), Course("21CSC203P", "ADVANCED PROGRAMMING PRACTICE", 2), Course("21DCS201P", "DESIGN THINKING AND METHODOLOGY", 2), Course("21LEM201T", "PROFESSIONAL ETHICS", 2)),
+    "Semester: 4" to listOf(Course("21MAB204T", "PROBABILITY AND QUEUEING THEORY", 4), Course("21CSC204J", "DESIGN AND ANALYSIS OF ALGORITHMS", 4), Course("21CSC205P", "DATABASE MANAGEMENT SYSTEMS", 4), Course("21CSC206T", "ARTIFICIAL INTELLIGENCE", 4), Course("21CSE253T", "INTERNET OF THINGS", 4), Course("21PDH209T", "SOCIAL ENGINEERING", 2), Course("21LEM202T", "UNIVERSAL HUMAN VALUES - II", 2))
+)
+
+@Composable
+fun CoursesScreen() {
+    val expanded = remember { mutableStateMapOf<String, Boolean>() }
+    LazyColumn(Modifier.fillMaxSize()) { coursesBySem.entries.forEach { (sem, courses) ->
+        item { SemesterHeader(sem, expanded[sem] ?: true) { expanded[sem] = !(expanded[sem] ?: true) } }
+        if (expanded[sem] != false) {
+            item { TableHeader(listOf("Code", "Subject Description", "Credits"), listOf(0.25f, 0.58f, 0.17f)) }
+            items(courses) { c -> TableRow(listOf(c.code, c.description, c.credits.toString()), listOf(0.25f, 0.58f, 0.17f)) }
+        }
+    } }
+}
+
+@Composable fun SemesterHeader(title: String, expanded: Boolean, onClick: () -> Unit) { Row(Modifier.fillMaxWidth().clickable { onClick() }.padding(horizontal = 18.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) { Text(title, color = BrightBlue, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f)); Icon(if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown, null, tint = Color.Black) } }
+@Composable fun TableHeader(labels: List<String>, weights: List<Float>) { Row(Modifier.fillMaxWidth().background(Red).padding(vertical = 12.dp)) { labels.forEachIndexed { i, s -> Text(s, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp, textAlign = TextAlign.Center, modifier = Modifier.weight(weights[i]).padding(horizontal = 4.dp)) } } }
+@Composable fun TableRow(values: List<String>, weights: List<Float>) { Row(Modifier.fillMaxWidth().background(if (values[0].hashCode() % 2 == 0) RowGray else Color.White).padding(vertical = 11.dp)) { values.forEachIndexed { i, s -> Text(s, fontSize = 13.sp, modifier = Modifier.weight(weights[i]).padding(horizontal = 4.dp), textAlign = if (i == 1) TextAlign.Start else TextAlign.Center) } } }
+@Composable fun GridTableHeader(labels: List<String>, weights: List<Float>) { Row(Modifier.fillMaxWidth().background(Red).border(0.5.dp, Border)) { labels.forEachIndexed { i, s -> Text(s, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp, textAlign = TextAlign.Center, modifier = Modifier.weight(weights[i]).border(0.5.dp, Color.White.copy(alpha = 0.3f)).padding(horizontal = 6.dp, vertical = 12.dp)) } } }
+@Composable fun GridTableRow(values: List<String>, weights: List<Float>, aligns: List<TextAlign> = emptyList(), shaded: Boolean = false) { Row(Modifier.fillMaxWidth().background(if (shaded) RowGray else Color.White).border(0.5.dp, Border)) { values.forEachIndexed { i, s -> Text(s, fontSize = 13.sp, modifier = Modifier.weight(weights[i]).border(0.5.dp, Border).padding(horizontal = 6.dp, vertical = 12.dp), textAlign = aligns.getOrElse(i) { TextAlign.Start }) } } }
+
+@Composable fun CompletionScreen() {
+    val rows = listOf(listOf("Basic Science Courses (BS)", "32", "32"), listOf("Engineering Science Courses (ES)", "31", "31"), listOf("Humanities and Social Sciences (HSS)", "12", "12"), listOf("Open Elective Courses (OE)", "9", "4"), listOf("Professional Core (PC)", "72", "60"), listOf("Professional Elective (PE)", "18", "6"), listOf("Project / Seminar", "8", "0"))
+    val weights = listOf(1.6f, 1f, 1f)
+    Column(Modifier.fillMaxSize()) {
+        GridTableHeader(listOf("Description", "Required Credits", "Credits Acquired"), weights)
+        LazyColumn { items(rows) { r -> GridTableRow(r, weights, listOf(TextAlign.Start, TextAlign.Start, TextAlign.Start)) } }
+    }
+}
+
+@Composable
+fun AttendanceScreen(store: LocalStore) {
+    val rows = remember { store.attendance() }
+
+    val overallConducted = rows.sumOf { it.conducted }
+    val overallPresent = rows.sumOf { it.attended }
+    val overall =
+        if (overallConducted == 0) 0.0
+        else overallPresent * 100.0 / overallConducted
+
+    Column(Modifier.fillMaxSize()) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .background(Red)
+                .padding(vertical = 12.dp)
+        ) {
+            listOf("Code", "TH", "PH", "AH", "%").forEachIndexed { i, h ->
+                Text(
+                    h,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(if (i == 0) 2.2f else 1f)
+                )
+            }
+        }
+
+        LazyColumn(Modifier.weight(1f)) {
+            itemsIndexed(rows) { i, a ->
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .background(if (i % 2 == 0) Color.White else RowGray)
+                        .padding(vertical = 15.dp)
+                ) {
+                    Text(
+                        a.code,
+                        fontSize = 14.sp,
+                        modifier = Modifier.weight(2.2f),
+                        textAlign = TextAlign.Center
+                    )
+
+                    Text(
+                        a.conducted.toString(),
+                        fontSize = 15.sp,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center
+                    )
+
+                    Text(
+                        a.attended.toString(),
+                        fontSize = 15.sp,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center
+                    )
+
+                    Text(
+                        a.absent.toString(),
+                        fontSize = 15.sp,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center
+                    )
+
+                    Text(
+                        String.format(Locale.US, "%.2f %%", a.percentage),
+                        fontSize = 14.sp,
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+
+            item {
+                Spacer(Modifier.height(14.dp))
+
+                Text(
+                    "Overall Attendance: ${
+                        String.format(Locale.US, "%.2f%%", overall)
+                    }",
+                    color = BrightBlue,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 18.dp)
+                )
+
+                Spacer(Modifier.height(10.dp))
+                LegendAttendance()
+
+                Column(
+                    Modifier.padding(
+                        horizontal = 18.dp,
+                        vertical = 4.dp
+                    )
+                ) {
+                    rows.forEach { a ->
+                        Text(
+                            buildAnnotatedCodeName(a.code, a.name),
+                            fontSize = 15.sp,
+                            lineHeight = 24.sp
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(14.dp))
+            }
+        }
+    }
+}
+
+@Composable fun LegendAttendance() { Column(Modifier.padding(horizontal = 18.dp, vertical = 6.dp)) { Text("LEGEND:", color = BrightBlue, fontSize = 19.sp, fontWeight = FontWeight.Bold); Text("TH - Total Hours", fontSize = 15.sp); Text("PH - Present Hours", fontSize = 15.sp); Text("AH - Absent Hours", fontSize = 15.sp) } }
+
+@Composable
+fun buildAnnotatedCodeName(code: String, name: String) = androidx.compose.ui.text.buildAnnotatedString {
+    androidx.compose.ui.text.SpanStyle(color = BrightBlue).let { style -> pushStyle(style); append(code); pop() }
+    append(" - $name")
+}
+
+@Composable fun AttendanceEditDialog(a: Attendance, onDismiss: () -> Unit, onSave: (Int, Int) -> Unit) { var c by remember { mutableStateOf(a.conducted.toString()) }; var p by remember { mutableStateOf(a.attended.toString()) }; var error by remember { mutableStateOf("") }; AlertDialog(onDismissRequest = onDismiss, title = { Text("Edit Attendance") }, text = { Column { Text(a.name, fontWeight = FontWeight.Bold); Spacer(Modifier.height(8.dp)); OutlinedTextField(c, { c = it.filter(Char::isDigit) }, label = { Text("Total Hours") }); Spacer(Modifier.height(8.dp)); OutlinedTextField(p, { p = it.filter(Char::isDigit) }, label = { Text("Present Hours") }); if (error.isNotBlank()) Text(error, color = MaterialTheme.colorScheme.error) } }, confirmButton = { TextButton(onClick = { val cv = c.toIntOrNull() ?: -1; val pv = p.toIntOrNull() ?: -1; if (cv < 0 || pv < 0 || pv > cv) error = "Present must be between 0 and Total Hours" else onSave(cv, pv) }) { Text("SAVE") } }, dismissButton = { TextButton(onClick = onDismiss) { Text("CANCEL") } }) }
+
+@Composable fun CumulativeScreen(store: LocalStore) {
+    val weights = listOf(1.4f, .8f, .7f, .7f, .7f, .7f)
+    Column(Modifier.fillMaxSize()) {
+        GridTableHeader(listOf("Month/Year", "Pre.", "Abs", "ODP", "ODA", "Med"), weights)
+        listOf("Jan-2026" to 101, "Feb-2026" to 125, "Mar-2026" to 127, "Apr-2026" to 33).forEachIndexed { i, m ->
+            GridTableRow(listOf(m.first, m.second.toString(), "0", "0", "0", "0"), weights, listOf(TextAlign.Start, TextAlign.Center, TextAlign.Center, TextAlign.Center, TextAlign.Center, TextAlign.Center), shaded = i % 2 == 1)
+        }
+        Column(Modifier.padding(18.dp)) {
+            Text("LEGEND:", color = BrightBlue, fontWeight = FontWeight.Bold, fontSize = 19.sp)
+            Text("Pre - Present\nAbs - Absent\nODP - OD Present\nODA - OD Absent\nMed - Medical Leave", fontSize = 15.sp, lineHeight = 24.sp)
+        }
+    }
+}
+
+@Composable fun HourAttendanceScreen() { val months = listOf("April - 2026" to 33, "March - 2026" to 127, "February - 2026" to 125, "January - 2026" to 100); val open = remember { mutableStateMapOf<String, Boolean>() }; LazyColumn { months.forEach { (m,p) -> item { Row(Modifier.fillMaxWidth().clickable { open[m] = !(open[m] ?: false) }.padding(20.dp), verticalAlignment = Alignment.CenterVertically) { Text(m, color = BrightBlue, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f)); AssistChip(onClick = {}, label = { Text("P - $p") }, colors = AssistChipDefaults.assistChipColors(containerColor = Color(0xFF4CAF50), labelColor = Color.White)); Spacer(Modifier.width(8.dp)); AssistChip(onClick = {}, label = { Text(if (m.startsWith("April")) "A - 1" else "A - 6") }, colors = AssistChipDefaults.assistChipColors(containerColor = Color(0xFFF44336), labelColor = Color.White)); Icon(if (open[m] == true) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown, null) } }; if (open[m] == true) item { HourTable() } } } }
+@Composable fun HourTable() {
+    GridTableHeader(listOf("Date", "1", "2", "3", "4", "5", "6", "7"), listOf(1.5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f))
+    listOf("09-Apr-2026" to listOf("-", "P", "P", "P", "-", "-", "-"), "08-Apr-2026" to listOf("P", "P", "A", "P", "P", "P", "P"), "07-Apr-2026" to listOf("P", "-", "P", "P", "P", "P", "P"), "06-Apr-2026" to listOf("P", "P", "P", "P", "P", "P", "P"), "02-Apr-2026" to listOf("P", "-", "-", "P", "P", "P", "P"), "01-Apr-2026" to listOf("P", "-", "P", "P", "P", "P", "P")).forEachIndexed { i, (d, marks) ->
+        Row(Modifier.fillMaxWidth().background(if (i % 2 == 0) Color.White else RowGray).border(0.5.dp, Border)) {
+            Text(d, fontSize = 12.sp, modifier = Modifier.weight(1.5f).border(0.5.dp, Border).padding(6.dp))
+            marks.forEach { mk ->
+                Text(mk, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = when (mk) { "P" -> Color(0xFF2E7D32); "A" -> Color(0xFFD32F2F); else -> Color.Gray }, modifier = Modifier.weight(.5f).border(0.5.dp, Border).padding(6.dp), textAlign = TextAlign.Center)
+            }
+        }
+    }
+}
+
+@Composable
+fun InternalMarksScreen(store: LocalStore) {
+    val marks = remember { store.marks() }
+
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            item {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .background(BrightBlue)
+                        .padding(vertical = 14.dp, horizontal = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "Code",
+                        modifier = Modifier.weight(1.2f),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp
+                    )
+
+                    Text(
+                        "Subject",
+                        modifier = Modifier.weight(3f),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp
+                    )
+
+                    Text(
+                        "Marks",
+                        modifier = Modifier.weight(1.2f),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 13.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+
+            items(marks.size) { i ->
+                val mark = marks[i]
+
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .background(
+                            if (i % 2 == 0) Color.White else RowGray
+                        )
+                        .border(0.5.dp, Border)
+                        .padding(vertical = 14.dp, horizontal = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        mark.code,
+                        modifier = Modifier.weight(1.2f),
+                        fontSize = 12.sp
+                    )
+
+                    Text(
+                        mark.description,
+                        modifier = Modifier
+                            .weight(3f)
+                            .padding(horizontal = 6.dp),
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp
+                    )
+
+                    Text(
+                        "${mark.acquired}/${mark.maximum}",
+                        modifier = Modifier.weight(1.2f),
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
+    }
+}
+private val examMonths = mapOf("Semester: 1" to "DEC 2024", "Semester: 2" to "MAY 2025", "Semester: 3" to "NOV 2025", "Semester: 4" to "MAY 2026")
+private val staticExams = mapOf(
+    "Semester: 1" to listOf(Exam("21LEH104T", "GERMAN", "A", "Pass"), Exam("21MAB101T", "CALCULUS AND LINEAR ALGEBRA", "B+", "Pass"), Exam("21CYB101J", "CHEMISTRY", "B+", "Pass"), Exam("21BTB102T", "INTRODUCTION TO COMPUTATIONAL BIOLOGY", "A", "Pass"), Exam("21CSS101J", "PROGRAMMING FOR PROBLEM SOLVING", "A", "Pass"), Exam("21GNH101J", "PHILOSOPHY OF ENGINEERING", "A", "Pass"), Exam("21MES101L", "BASIC CIVIL AND MECHANICAL WORKSHOP", "O", "Pass"), Exam("21PDM101L", "PROFESSIONAL SKILLS AND PRACTICES", "O", "Pass"), Exam("21GNM101L", "PHYSICAL AND MENTAL HEALTH USING YOGA", "O", "Pass")),
+    "Semester: 2" to listOf(Exam("21LEM101T", "CONSTITUTION OF INDIA", "O", "Pass"), Exam("21MAB102T", "ADVANCED CALCULUS AND COMPLEX ANALYSIS", "A", "Pass"), Exam("21PYB102J", "SEMICONDUCTOR PHYSICS AND COMPUTATIONAL METHODS", "A", "Pass"), Exam("21EES101T", "ELECTRICAL AND ELECTRONICS ENGINEERING", "A+", "Pass"), Exam("21CSC101T", "OBJECT ORIENTED DESIGN AND PROGRAMMING", "A", "Pass"), Exam("21CYM101T", "ENVIRONMENTAL SCIENCE", "O", "Pass"), Exam("21MES102L", "ENGINEERING GRAPHICS AND DESIGN", "A+", "Pass"), Exam("21LEH101T", "COMMUNICATIVE ENGLISH", "A+", "Pass")),
+    "Semester: 3" to listOf(Exam("21MAB201T", "TRANSFORMS AND BOUNDARY VALUE PROBLEMS", "A", "Pass"), Exam("21CSC201J", "DATA STRUCTURES AND ALGORITHMS", "B+", "Pass"), Exam("21CSC202J", "OPERATING SYSTEMS", "A", "Pass"), Exam("21CSS201T", "COMPUTER ORGANIZATION AND ARCHITECTURE", "A+", "Pass"), Exam("21CSC203P", "ADVANCED PROGRAMMING PRACTICE", "A+", "Pass"), Exam("21DCS201P", "DESIGN THINKING AND METHODOLOGY", "O", "Pass"), Exam("21LEM201T", "PROFESSIONAL ETHICS", "A+", "Pass"))
+)
+
+@Composable
+fun ExamDetailsScreen(store: LocalStore) {
+    val exams = remember { store.exams() }
+
+    val semesters = listOf(
+        "Semester: 1" to staticExams.getValue("Semester: 1"),
+        "Semester: 2" to staticExams.getValue("Semester: 2"),
+        "Semester: 3" to staticExams.getValue("Semester: 3"),
+        "Semester: 4" to exams
+    )
+
+    val expanded = remember { mutableStateMapOf<String, Boolean>() }
+    val weights = listOf(1f, 2f, 0.65f, 0.65f)
+
+    LazyColumn {
+        semesters.forEach { (s, list) ->
+            item {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            expanded[s] = !(expanded[s] ?: (s == "Semester: 4"))
+                        }
+                        .padding(horizontal = 18.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        s,
+                        color = BrightBlue,
+                        fontSize = 17.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    Text(
+                        examMonths[s] ?: "",
+                        color = BrightBlue,
+                        fontSize = 17.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(Modifier.width(6.dp))
+
+                    Icon(
+                        if (expanded[s] ?: (s == "Semester: 4"))
+                            Icons.Default.KeyboardArrowUp
+                        else
+                            Icons.Default.KeyboardArrowDown,
+                        null,
+                        tint = Color.Black
+                    )
+                }
+
+                Divider(color = Border)
+            }
+
+            if ((expanded[s] ?: (s == "Semester: 4")) && list.isNotEmpty()) {
+                item {
+                    GridTableHeader(
+                        listOf("Code", "Description", "Grade", "Result"),
+                        weights
+                    )
+                }
+
+                itemsIndexed(list) { i, e ->
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .background(if (i % 2 == 0) Color.White else RowGray)
+                            .border(0.5.dp, Border)
+                    ) {
+                        Text(
+                            e.code,
+                            fontSize = 12.sp,
+                            modifier = Modifier
+                                .weight(weights[0])
+                                .border(0.5.dp, Border)
+                                .padding(6.dp)
+                        )
+
+                        Text(
+                            e.description,
+                            fontSize = 12.sp,
+                            modifier = Modifier
+                                .weight(weights[1])
+                                .border(0.5.dp, Border)
+                                .padding(6.dp)
+                        )
+
+                        Text(
+                            e.grade,
+                            fontSize = 13.sp,
+                            modifier = Modifier
+                                .weight(weights[2])
+                                .border(0.5.dp, Border)
+                                .padding(6.dp),
+                            textAlign = TextAlign.Center
+                        )
+
+                        Text(
+                            e.result,
+                            fontSize = 13.sp,
+                            modifier = Modifier
+                                .weight(weights[3])
+                                .border(0.5.dp, Border)
+                                .padding(6.dp),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+private data class TTCell(val subject: String, val room: String)
+private data class TimetableDay(
+    val day: String,
+    val periods: List<String>
+)
+
+private val timetableSlots = listOf(
+    "8:00-8:50",
+    "8:50-9:40",
+    "9:40-10:30",
+    "10:30-10:50",
+    "10:50-11:40",
+    "11:40-12:30",
+    "12:30-1:15",
+    "1:15-2:00",
+    "2:00-2:45"
+)
+
+private val timetableData = listOf(
+    TimetableDay(
+        "Monday",
+        listOf(
+            "CN",
+            "OE-1",
+            "FLA",
+            "BREAK",
+            "DM",
+            "CC",
+            "LUNCH",
+            "CN LAB",
+            "CN LAB"
+        )
+    ),
+    TimetableDay(
+        "Tuesday",
+        listOf(
+            "DM",
+            "FLA",
+            "ML",
+            "BREAK",
+            "CN LAB",
+            "CN LAB",
+            "LUNCH",
+            "PE-2",
+            "-"
+        )
+    ),
+    TimetableDay(
+        "Wednesday",
+        listOf(
+            "FLA",
+            "ML LAB",
+            "ML LAB",
+            "BREAK",
+            "CN",
+            "IAF",
+            "LUNCH",
+            "OE-1",
+            "-"
+        )
+    ),
+    TimetableDay(
+        "Thursday",
+        listOf(
+            "PE-2",
+            "CN",
+            "ML",
+            "BREAK",
+            "OE-1",
+            "FLA",
+            "LUNCH",
+            "CN",
+            "DM"
+        )
+    ),
+    TimetableDay(
+        "Friday",
+        listOf(
+            "OE-1",
+            "FLA",
+            "DM",
+            "BREAK",
+            "PE-2",
+            "PE-2",
+            "LUNCH",
+            "LIB",
+            "-"
+        )
+    )
+)
+
+private val timetableLegend = listOf(
+    Triple(
+        "DM",
+        "21MAB302T",
+        "Discrete Mathematics for Engineers"
+    ),
+    Triple(
+        "FLA",
+        "21CSC301T",
+        "Formal Language and Automata"
+    ),
+    Triple(
+        "CN",
+        "21CSC302J",
+        "Computer Networks"
+    ),
+    Triple(
+        "ML",
+        "21CSC305P",
+        "Machine Learning"
+    ),
+    Triple(
+        "IAF",
+        "21LEM301T",
+        "Indian Art Form"
+    ),
+    Triple(
+        "OE-1",
+        "21MEO115T",
+        "Introduction to Drones"
+    ),
+    Triple(
+        "CC",
+        "21GNP301L",
+        "Community Connect"
+    ),
+    Triple(
+        "PE-1",
+        "21CSE253T",
+        "Information Storage and Management"
+    ),
+    Triple(
+        "PE-1",
+        "21CSE354T",
+        "Full Stack Web Development"
+    ),
+    Triple(
+        "PE-1",
+        "21IPE312P",
+        "ERP Solutions for Digital Enterprises"
+    ),
+    Triple(
+        "LIB",
+        "-",
+        "Library"
+    )
+)
+
+private val timetableFaculty = mapOf(
+    "DM" to "Dr. F. Ragu­pathi",
+    "FLA" to "Ms. S. Niveditha",
+    "CN" to "Dr. M. Daniel Nareshkumar",
+    "ML" to "Ms. A. Nivashini",
+    "IAF" to "Dr. S. Arulya",
+    "OE-1" to "Dr. A. Visagan",
+    "CC" to "Dr. S. Sridevi",
+    "PE-1" to "Multiple Faculty",
+    "LIB" to "Ms. S. Niveditha"
+)
+
+@Composable
+fun TimetableScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        Text(
+            text = "Weekly Timetable",
+            color = BrightBlue,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(
+                start = 20.dp,
+                top = 18.dp,
+                bottom = 12.dp
+            )
+        )
+
+        Text(
+            text = "III CSE B • V SEMESTER",
+            color = Color.DarkGray,
+            fontSize = 14.sp,
+            modifier = Modifier.padding(
+                start = 20.dp,
+                bottom = 14.dp
+            )
+        )
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(
+                start = 12.dp,
+                end = 12.dp,
+                bottom = 24.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            items(timetableData) { day ->
+                TimetableDayCard(day)
+            }
+
+            item {
+                Spacer(Modifier.height(8.dp))
+
+                Text(
+                    text = "SUBJECT DETAILS",
+                    color = BrightBlue,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(
+                        start = 8.dp,
+                        bottom = 10.dp
+                    )
+                )
+
+                timetableLegend.forEach { (code, subjectCode, subjectName) ->
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 6.dp),
+                        color = Color(0xFFF5F5F5),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(10.dp)
+                        ) {
+                            Text(
+                                text = code,
+                                color = BrightBlue,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+
+                            Text(
+                                text = subjectCode,
+                                color = Color.DarkGray,
+                                fontSize = 12.sp
+                            )
+
+                            Text(
+                                text = subjectName,
+                                color = Color.Black,
+                                fontSize = 13.sp
+                            )
+
+                            timetableFaculty[code]?.let { faculty ->
+                                Text(
+                                    text = faculty,
+                                    color = Color.Gray,
+                                    fontSize = 11.sp,
+                                    modifier = Modifier.padding(top = 2.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun TimetableDayCard(day: TimetableDay) {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = Color(0xFFF9F9F9),
+        shape = RoundedCornerShape(12.dp),
+        shadowElevation = 3.dp
+    ) {
+        Column(
+            modifier = Modifier.padding(10.dp)
+        ) {
+            Text(
+                text = day.day,
+                color = BrightBlue,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(
+                    start = 4.dp,
+                    bottom = 8.dp
+                )
+            )
+
+            day.periods.forEachIndexed { index, subject ->
+                TimetablePeriodRow(
+                    time = timetableSlots[index],
+                    subject = subject
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun TimetablePeriodRow(
+    time: String,
+    subject: String
+) {
+    val isBreak = subject == "BREAK"
+    val isLunch = subject == "LUNCH"
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 42.dp)
+            .padding(vertical = 2.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = time,
+            fontSize = 11.sp,
+            color = Color.DarkGray,
+            modifier = Modifier.width(82.dp)
+        )
+
+        Surface(
+            modifier = Modifier.weight(1f),
+            color = when {
+                isBreak -> Color(0xFFE8E8E8)
+                isLunch -> Color(0xFFE8E8E8)
+                subject == "-" -> Color.White
+                else -> Color(0xFFEAF4FC)
+            },
+            shape = RoundedCornerShape(6.dp)
+        ) {
+            Text(
+                text = subject,
+                fontSize = 13.sp,
+                fontWeight = if (isBreak || isLunch) {
+                    FontWeight.Bold
+                } else {
+                    FontWeight.Medium
+                },
+                color = if (subject == "-") {
+                    Color.Gray
+                } else {
+                    Color.Black
+                },
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(
+                    horizontal = 6.dp,
+                    vertical = 10.dp
+                )
+            )
+        }
+    }
+}
+@Composable fun UnavailableScreen(message: String) { Box(Modifier.fillMaxSize().padding(top = 260.dp, start = 22.dp, end = 22.dp)) { Text(message, fontSize = 18.sp, textAlign = TextAlign.Start) } }
+@Composable fun TablePage(headers:List<String>, rows:List<List<String>>){Column(Modifier.fillMaxSize()){TableHeader(headers,headers.map{1f/headers.size});LazyColumn{items(rows){r->TableRow(r,headers.map{1f/headers.size})}}}}

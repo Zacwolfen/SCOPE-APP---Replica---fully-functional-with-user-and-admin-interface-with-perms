@@ -1,0 +1,66 @@
+com.scopelocal.app-lifecycle-viewmodel-release-0 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/02b8a8d1cda18908ccdc1475a6cbc432/transformed/lifecycle-viewmodel-release/res
+com.scopelocal.app-play-services-auth-20.7.0-1 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/0426de263be9ea7eda6832cf6be8ec07/transformed/play-services-auth-20.7.0/res
+com.scopelocal.app-savedstate-1.2.1-2 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/06555645c78936b88ee175a6007d91d2/transformed/savedstate-1.2.1/res
+com.scopelocal.app-runtime-saveable-release-3 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/0a32d221708b492e500720d05aa1fc9e/transformed/runtime-saveable-release/res
+com.scopelocal.app-credentials-1.2.0-rc01-4 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/0b5633cd340c92d51623c534312f7c83/transformed/credentials-1.2.0-rc01/res
+com.scopelocal.app-runtime-release-5 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/0cf802d05384c764f1b6c07771b22079/transformed/runtime-release/res
+com.scopelocal.app-ui-tooling-data-release-6 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/0d569a31364360b5b1d1ac6902430623/transformed/ui-tooling-data-release/res
+com.scopelocal.app-material-release-7 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/1029505f8e462adc5b9d0efeabf533b7/transformed/material-release/res
+com.scopelocal.app-play-services-basement-18.4.0-8 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/129cfa19ec9f0234bdfa0a38be0e20f2/transformed/play-services-basement-18.4.0/res
+com.scopelocal.app-lifecycle-livedata-2.8.3-9 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/12ddb029899d855c7162686323bda082/transformed/lifecycle-livedata-2.8.3/res
+com.scopelocal.app-lifecycle-runtime-ktx-release-10 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/13915ed9ed851900b3c8a1475d804c9b/transformed/lifecycle-runtime-ktx-release/res
+com.scopelocal.app-navigation-runtime-ktx-2.8.5-11 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/185aafda8f209b661dd1631cfbd1c82f/transformed/navigation-runtime-ktx-2.8.5/res
+com.scopelocal.app-ui-util-release-12 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/1a4dd38bc62e5eeec4cfa4a4e4d218c5/transformed/ui-util-release/res
+com.scopelocal.app-browser-1.4.0-13 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/1bae397316f2b865f03d1d2cf76132b3/transformed/browser-1.4.0/res
+com.scopelocal.app-core-runtime-2.2.0-14 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/2daae675e01d7895c381dbd97e09f1cf/transformed/core-runtime-2.2.0/res
+com.scopelocal.app-play-services-base-18.0.1-15 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/30e7f41e1506c8ee6492cb867894d528/transformed/play-services-base-18.0.1/res
+com.scopelocal.app-lifecycle-viewmodel-compose-release-16 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/356c7e8d0fa4a04692f963a76428a3d4/transformed/lifecycle-viewmodel-compose-release/res
+com.scopelocal.app-ui-text-release-17 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/3658b75d9ca81b3bd6a0b9f154955a50/transformed/ui-text-release/res
+com.scopelocal.app-ui-graphics-release-18 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/36c09d115dce25d5e5d1df4bbabdba69/transformed/ui-graphics-release/res
+com.scopelocal.app-credentials-play-services-auth-1.2.0-rc01-19 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/3f644382a391501faaeb4b8c337a383e/transformed/credentials-play-services-auth-1.2.0-rc01/res
+com.scopelocal.app-ui-tooling-release-20 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/4a49c6d359f5bab813e3056f621bae2e/transformed/ui-tooling-release/res
+com.scopelocal.app-lifecycle-runtime-compose-release-21 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/4d0c8d7ba193c3a4226568e7d5c7c8a6/transformed/lifecycle-runtime-compose-release/res
+com.scopelocal.app-lifecycle-viewmodel-savedstate-2.8.3-22 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/53486dbd4c297b0a46459f44ad4624e4/transformed/lifecycle-viewmodel-savedstate-2.8.3/res
+com.scopelocal.app-lifecycle-livedata-core-2.8.3-23 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/5481d8e3452896f2e0a5f79ba5cc6d79/transformed/lifecycle-livedata-core-2.8.3/res
+com.scopelocal.app-core-common-2.0.3-24 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/5a868e59b4c0176ef2130de8d54d4033/transformed/core-common-2.0.3/res
+com.scopelocal.app-foundation-layout-release-25 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/65b55bfbaf7f31dac5751ddf9e89059b/transformed/foundation-layout-release/res
+com.scopelocal.app-savedstate-ktx-1.2.1-26 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/6e71c9e0228b16c947193608a2713006/transformed/savedstate-ktx-1.2.1/res
+com.scopelocal.app-material-icons-extended-release-27 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/757f1fd786cbc09177224dbed9c2a478/transformed/material-icons-extended-release/res
+com.scopelocal.app-material-icons-core-release-28 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/770dcf3d438bc95e1843ba563d084920/transformed/material-icons-core-release/res
+com.scopelocal.app-activity-1.10.0-29 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/792e32984be4865431ebafd283afd8e3/transformed/activity-1.10.0/res
+com.scopelocal.app-annotation-experimental-1.4.1-30 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/7d576b0a0ed62c6417164d72a79e2ff9/transformed/annotation-experimental-1.4.1/res
+com.scopelocal.app-profileinstaller-1.4.0-31 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/7e6a4ed1f2f4259b6aec0053f4e0a143/transformed/profileinstaller-1.4.0/res
+com.scopelocal.app-graphics-path-1.0.1-32 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/7fe023379abb98badbbcf010829b885c/transformed/graphics-path-1.0.1/res
+com.scopelocal.app-foundation-release-33 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8005c7a33780b8b22f217ffd64e9630d/transformed/foundation-release/res
+com.scopelocal.app-lifecycle-viewmodel-ktx-2.8.3-34 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/899cfca21c815c9506109a824d8c0431/transformed/lifecycle-viewmodel-ktx-2.8.3/res
+com.scopelocal.app-firebase-common-21.0.0-35 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8a466647f856c94ee9e3dd90730b331e/transformed/firebase-common-21.0.0/res
+com.scopelocal.app-customview-poolingcontainer-1.0.0-36 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8af91d0409aa6faca0c6832d82b4d715/transformed/customview-poolingcontainer-1.0.0/res
+com.scopelocal.app-navigation-runtime-2.8.5-37 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8c1c18a794c44ed986a51e1fee5e26ce/transformed/navigation-runtime-2.8.5/res
+com.scopelocal.app-core-1.13.1-38 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8da61ac0145a7a55d10828f544c10fc9/transformed/core-1.13.1/res
+com.scopelocal.app-emoji2-1.3.0-39 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9144462ceada7f60acf7ae3f076050d7/transformed/emoji2-1.3.0/res
+com.scopelocal.app-ui-unit-release-40 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9446c36d0688ce5102a53727c60968a0/transformed/ui-unit-release/res
+com.scopelocal.app-ui-geometry-release-41 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9492c6f7079ef8a76393f44d9bc09486/transformed/ui-geometry-release/res
+com.scopelocal.app-ui-release-42 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9498d44b08d74dcbe3cc083f10d150c9/transformed/ui-release/res
+com.scopelocal.app-animation-core-release-43 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9acf8087ac71f9e61a751ca221c5f619/transformed/animation-core-release/res
+com.scopelocal.app-ui-tooling-preview-release-44 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9d0057011c25e952731d475538c4bf54/transformed/ui-tooling-preview-release/res
+com.scopelocal.app-lifecycle-process-2.8.3-45 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/9dee1e4cac811ec06f189060c6311f45/transformed/lifecycle-process-2.8.3/res
+com.scopelocal.app-navigation-compose-2.8.5-46 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/a14882f25d0a411081d9a86e0058c527/transformed/navigation-compose-2.8.5/res
+com.scopelocal.app-core-ktx-1.13.1-47 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/a344c6c3ca86b77932ee101632d03ca0/transformed/core-ktx-1.13.1/res
+com.scopelocal.app-activity-ktx-1.10.0-48 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/aea29cb1e8f731bbc91ed8ce4c959ff0/transformed/activity-ktx-1.10.0/res
+com.scopelocal.app-material3-release-49 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/b17f2f6df6ff6b9910ef91ddc03502a6/transformed/material3-release/res
+com.scopelocal.app-lifecycle-runtime-release-50 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/b19f549d3a24d237ec6a9a840548d2a8/transformed/lifecycle-runtime-release/res
+com.scopelocal.app-lifecycle-livedata-core-ktx-2.8.3-51 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/b816b0ea925cd8ce6b9f184bfa731334/transformed/lifecycle-livedata-core-ktx-2.8.3/res
+com.scopelocal.app-navigation-common-ktx-2.8.5-52 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/b91c878715758594234a64305fe7c4d7/transformed/navigation-common-ktx-2.8.5/res
+com.scopelocal.app-activity-compose-1.10.0-53 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/d8c9b432474169139c00e8d197e23f68/transformed/activity-compose-1.10.0/res
+com.scopelocal.app-animation-release-54 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/e6b29556546b9c281709bc55c04c4277/transformed/animation-release/res
+com.scopelocal.app-startup-runtime-1.1.1-55 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f3088eaabcc46627f77c7a213b3ad5f3/transformed/startup-runtime-1.1.1/res
+com.scopelocal.app-navigation-common-2.8.5-56 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f510831324c64d19c27f13a742aeabef/transformed/navigation-common-2.8.5/res
+com.scopelocal.app-material-ripple-release-57 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f6013b4d69cac140af32f6589d12421c/transformed/material-ripple-release/res
+com.scopelocal.app-pngs-58 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/pngs/debug
+com.scopelocal.app-res-59 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/processDebugGoogleServices
+com.scopelocal.app-resValues-60 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/resValues/debug
+com.scopelocal.app-packageDebugResources-61 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.scopelocal.app-packageDebugResources-62 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.scopelocal.app-debug-63 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.scopelocal.app-debug-64 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/debug/res
+com.scopelocal.app-main-65 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/res

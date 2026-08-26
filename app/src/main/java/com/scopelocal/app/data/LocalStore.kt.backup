@@ -1,0 +1,348 @@
+package com.scopelocal.app.data
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import com.scopelocal.app.model.Attendance
+import com.scopelocal.app.model.Exam
+import com.scopelocal.app.model.Mark
+import com.scopelocal.app.model.Student
+
+class LocalStore(context: Context) :
+    SQLiteOpenHelper(context, "scope_local.db", null, 1) {
+
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL("CREATE TABLE kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)")
+        seed(db)
+    }
+
+    override fun onUpgrade(
+        db: SQLiteDatabase,
+        oldVersion: Int,
+        newVersion: Int
+    ) {
+    }
+
+    private fun seed(db: SQLiteDatabase) {
+
+        val defaults: Map<String, String> = mapOf(
+            "name" to "Sreya S",
+            "gender" to "Female",
+            "dob" to "29-Nov-2007",
+            "register" to "RA2411003040006",
+            "institution" to "Faculty of Engineering and Technology, Vadapalani (SRM Institute of Science and Technology)",
+            "program" to "B.Tech.-Computer Science and Engineering [UG - FT - ACADEMIC]",
+            "semester" to "V SEMESTER",
+            "batch" to "2024",
+            "section" to "B",
+            "campus" to "Ramapuram",
+            "cgpa" to "8.50",
+            "sgpa" to "8.50",
+            "photoUri" to ""
+        )
+
+        defaults.forEach { entry ->
+            put(db, entry.key, entry.value)
+        }
+
+        val att = listOf(
+            Attendance(
+                "21CSC301T",
+                "FORMAL LANGUAGE AND AUTOMATA",
+                "",
+                19,
+                17
+            ),
+            Attendance(
+                "21CSC302J",
+                "COMPUTER NETWORKS",
+                "",
+                29,
+                27
+            ),
+            Attendance(
+                "21CSC305P",
+                "MACHINE LEARNING",
+                "",
+                16,
+                14
+            ),
+            Attendance(
+                "21CSE354T",
+                "FULL STACK WEB DEVELOPMENT",
+                "",
+                16,
+                13
+            ),
+            Attendance(
+                "21GNP301L",
+                "COMMUNITY CONNECT",
+                "",
+                3,
+                3
+            ),
+            Attendance(
+                "21LEM301T",
+                "INDIAN ART FORM",
+                "",
+                4,
+                4
+            ),
+            Attendance(
+                "21MAB302T",
+                "DISCRETE MATHEMATICS",
+                "",
+                15,
+                12
+            ),
+            Attendance(
+                "21MEO115T",
+                "INTRODUCTION TO DRONES",
+                "",
+                15,
+                13
+            )
+        )
+
+        att.forEachIndexed { i, a ->
+            put(db, "att_${i}_code", a.code)
+            put(db, "att_${i}_name", a.name)
+            put(db, "att_${i}_conducted", a.conducted.toString())
+            put(db, "att_${i}_attended", a.attended.toString())
+        }
+
+        val marks = listOf(
+            Mark(
+                "21CSC206T",
+                "ARTIFICIAL INTELLIGENCE",
+                57.08,
+                60.0
+            ),
+            Mark(
+                "21CSC205P",
+                "DATABASE MANAGEMENT SYSTEMS",
+                94.40,
+                100.0
+            ),
+            Mark(
+                "21CSC204J",
+                "DESIGN AND ANALYSIS OF ALGORITHMS",
+                48.88,
+                60.0
+            ),
+            Mark(
+                "21CSE253T",
+                "INTERNET OF THINGS",
+                50.0,
+                60.0
+            ),
+            Mark(
+                "21MAB204T",
+                "PROBABILITY AND QUEUEING THEORY",
+                48.05,
+                60.0
+            ),
+            Mark(
+                "21PDH209T",
+                "SOCIAL ENGINEERING",
+                95.0,
+                100.0
+            ),
+            Mark(
+                "21LEM202T",
+                "UNIVERSAL HUMAN VALUES - II: UNDERSTANDING HARMONY AND ETHICAL HUMAN CONDUCT",
+                100.0,
+                100.0
+            )
+        )
+
+        marks.forEachIndexed { i, m ->
+            put(db, "mark_${i}_code", m.code)
+            put(db, "mark_${i}_desc", m.description)
+            put(db, "mark_${i}_acq", m.acquired.toString())
+            put(db, "mark_${i}_max", m.maximum.toString())
+        }
+
+        val exams = listOf(
+            Exam(
+                "21MAB204T",
+                "PROBABILITY AND QUEUEING THEORY",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21CSC204J",
+                "DESIGN AND ANALYSIS OF ALGORITHMS",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21CSC205P",
+                "DATABASE MANAGEMENT SYSTEMS",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21CSC206T",
+                "ARTIFICIAL INTELLIGENCE",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21CSE253T",
+                "INTERNET OF THINGS",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21PDH209T",
+                "SOCIAL ENGINEERING",
+                "O",
+                "Pass"
+            ),
+            Exam(
+                "21LEM202T",
+                "UNIVERSAL HUMAN VALUES - II: UNDERSTANDING HARMONY AND ETHICAL HUMAN CONDUCT",
+                "O",
+                "Pass"
+            )
+        )
+
+        exams.forEachIndexed { i, e ->
+            put(db, "exam_${i}_code", e.code)
+            put(db, "exam_${i}_desc", e.description)
+            put(db, "exam_${i}_grade", e.grade)
+            put(db, "exam_${i}_result", e.result)
+        }
+    }
+
+    private fun put(
+        db: SQLiteDatabase,
+        key: String,
+        value: String
+    ) {
+        db.insertWithOnConflict(
+            "kv",
+            null,
+            ContentValues().apply {
+                put("k", key)
+                put("v", value)
+            },
+            SQLiteDatabase.CONFLICT_REPLACE
+        )
+    }
+
+    fun put(
+        key: String,
+        value: String
+    ) {
+        writableDatabase.use { db ->
+            put(db, key, value)
+        }
+    }
+
+    fun get(
+        key: String,
+        fallback: String = ""
+    ): String {
+        return readableDatabase.rawQuery(
+            "SELECT v FROM kv WHERE k=?",
+            arrayOf(key)
+        ).use { cursor ->
+            if (cursor.moveToFirst()) {
+                cursor.getString(0)
+            } else {
+                fallback
+            }
+        }
+    }
+
+    fun student(): Student {
+        return Student(
+            get("name"),
+            get("gender"),
+            get("dob"),
+            get("register"),
+            get("institution"),
+            get("program"),
+            get("semester"),
+            get("batch"),
+            get("section"),
+            get("campus"),
+            get("cgpa"),
+            get("sgpa"),
+            get("photoUri").ifBlank { null }
+        )
+    }
+
+    fun attendance(): List<Attendance> {
+        return (0 until 8).map { i ->
+            Attendance(
+                get("att_${i}_code"),
+                get("att_${i}_name"),
+                "",
+                get("att_${i}_conducted").toIntOrNull() ?: 0,
+                get("att_${i}_attended").toIntOrNull() ?: 0
+            )
+        }
+    }
+
+    fun updateAttendance(
+        i: Int,
+        conducted: Int,
+        attended: Int
+    ) {
+        put(
+            "att_${i}_conducted",
+            conducted.toString()
+        )
+
+        put(
+            "att_${i}_attended",
+            attended.toString()
+        )
+    }
+
+    fun marks(): List<Mark> {
+        return (0 until 7).map { i ->
+            Mark(
+                get("mark_${i}_code"),
+                get("mark_${i}_desc"),
+                get("mark_${i}_acq").toDoubleOrNull() ?: 0.0,
+                get("mark_${i}_max").toDoubleOrNull() ?: 100.0
+            )
+        }
+    }
+
+    fun updateMark(
+        i: Int,
+        acquired: Double
+    ) {
+        put(
+            "mark_${i}_acq",
+            acquired.toString()
+        )
+    }
+
+    fun exams(): List<Exam> {
+        return (0 until 7).map { i ->
+            Exam(
+                get("exam_${i}_code"),
+                get("exam_${i}_desc"),
+                get("exam_${i}_grade"),
+                get("exam_${i}_result")
+            )
+        }
+    }
+
+    fun updateGrade(
+        i: Int,
+        grade: String
+    ) {
+        put(
+            "exam_${i}_grade",
+            grade
+        )
+    }
+}

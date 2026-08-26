@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.scopelocal.app-debug-63:/drawable_scope_icon.png.flat",
+        "source": "com.scopelocal.app-main-65:/drawable/scope_icon.png"
+    },
+    {
+        "merged": "com.scopelocal.app-debug-63:/drawable_profile_default.jpg.flat",
+        "source": "com.scopelocal.app-main-65:/drawable/profile_default.jpg"
+    }
+]

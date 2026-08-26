@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251968952150",
+    "project_id": "scopelocal-cloud",
+    "storage_bucket": "scopelocal-cloud.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251968952150:android:97bf9dfd97a3f7434de8f7",
+        "android_client_info": {
+          "package_name": "com.scopelocal.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMP7CD4EhGvGTnEUNOz3lALnpXp6sYXVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
