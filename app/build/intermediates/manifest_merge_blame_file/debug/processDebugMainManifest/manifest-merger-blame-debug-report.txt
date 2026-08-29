@@ -9,11 +9,11 @@
 9        android:targetSdkVersion="35" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:4:5-67
-11-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:4:22-64
+11-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:4:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:5:5-79
-12-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:5:22-76
+12-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:5:5-79
+12-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:5:22-76
 13    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 13-->[com.google.android.recaptcha:recaptcha:18.5.1] /Users/kaushikxo/.gradle/caches/9.7.1/transforms/1cd4c80ea8a08c0d066b84c2984d8f54/transformed/recaptcha-18.5.1/AndroidManifest.xml:9:5-98
 13-->[com.google.android.recaptcha:recaptcha:18.5.1] /Users/kaushikxo/.gradle/caches/9.7.1/transforms/1cd4c80ea8a08c0d066b84c2984d8f54/transformed/recaptcha-18.5.1/AndroidManifest.xml:9:22-95
@@ -30,36 +30,36 @@
 19-->[androidx.core:core:1.13.1] /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8da61ac0145a7a55d10828f544c10fc9/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
 20
 21    <application
-21-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:7:5-25:19
+21-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:7:5-25:19
 22        android:allowBackup="false"
-22-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:11:9-36
+22-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:11:9-36
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.13.1] /Users/kaushikxo/.gradle/caches/9.7.1/transforms/8da61ac0145a7a55d10828f544c10fc9/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 24        android:debuggable="true"
 25        android:extractNativeLibs="false"
 26        android:icon="@drawable/scope_icon"
-26-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:10:9-44
+26-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:10:9-44
 27        android:label="@string/app_name"
-27-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:9:9-41
+27-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:9:9-41
 28        android:supportsRtl="true"
-28-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:12:9-35
+28-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:12:9-35
 29        android:theme="@style/Theme.Scope" >
-29-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:8:9-43
+29-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:8:9-43
 30        <activity
-30-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:14:9-23:20
+30-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:14:9-23:20
 31            android:name="com.scopelocal.app.MainActivity"
-31-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:15:13-41
+31-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:15:13-41
 32            android:exported="true" >
-32-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:16:13-36
+32-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:16:13-36
 33            <intent-filter>
-33-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:18:13-21:29
+33-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:18:13-21:29
 34                <action android:name="android.intent.action.MAIN" />
-34-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:19:17-69
-34-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:19:25-66
+34-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:19:17-69
+34-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:19:25-66
 35
 36                <category android:name="android.intent.category.LAUNCHER" />
-36-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:20:17-77
-36-->/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/AndroidManifest.xml:20:27-74
+36-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:20:17-77
+36-->/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/AndroidManifest.xml:20:27-74
 37            </intent-filter>
 38        </activity>
 39        <activity

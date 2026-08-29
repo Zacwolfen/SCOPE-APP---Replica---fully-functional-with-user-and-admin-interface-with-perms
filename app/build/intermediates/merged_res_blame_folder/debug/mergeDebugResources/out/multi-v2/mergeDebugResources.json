@@ -9185,23 +9185,6 @@
                     }
                 },
                 {
-                    "source": "/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/res/values/colors.xml",
-                    "from": {
-                        "startLines": "1,2,3",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "16,61,112",
-                        "endColumns": "44,50,43",
-                        "endOffsets": "56,107,151"
-                    },
-                    "to": {
-                        "startLines": "21,22,23",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "1553,1598,1649",
-                        "endColumns": "44,50,43",
-                        "endOffsets": "1593,1644,1688"
-                    }
-                },
-                {
                     "source": "/Users/kaushikxo/.gradle/caches/9.7.1/transforms/8c1c18a794c44ed986a51e1fee5e26ce/transformed/navigation-runtime-2.8.5/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,10,13",
@@ -9221,6 +9204,25 @@
                     }
                 },
                 {
+                    "source": "/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "56",
+                        "endLines": "11",
+                        "endColumns": "12",
+                        "endOffsets": "446"
+                    },
+                    "to": {
+                        "startLines": "286",
+                        "startColumns": "4",
+                        "startOffsets": "19742",
+                        "endLines": "294",
+                        "endColumns": "12",
+                        "endOffsets": "20132"
+                    }
+                },
+                {
                     "source": "/Users/kaushikxo/.gradle/caches/9.7.1/transforms/b17f2f6df6ff6b9910ef91ddc03502a6/transformed/material3-release/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22,23,24,25,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,74",
@@ -9237,6 +9239,23 @@
                         "endLines": "117,164,165,166,167,168,169,170,171,172,175,176,177,178,179,180,181,182,183,184,185,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,252,255",
                         "endColumns": "72,87,85,80,83,68,64,82,105,85,13,53,68,60,68,88,94,73,96,92,97,13,90,87,95,97,63,67,86,93,66,71,71,100,108,75,68,47,65,63,73,56,56,71,49,53,70,70,69,68,57,75,70,73,85,49,69,64,12,12",
                         "endOffsets": "7325,11881,11967,12048,12132,12201,12266,12349,12455,12541,12661,12715,12784,12845,12914,13003,13098,13172,13269,13362,13460,13609,13700,13788,13884,13982,14046,14114,14201,14295,14362,14434,14506,14607,14716,14792,14861,14909,14975,15039,15113,15170,15227,15299,15349,15403,15474,15545,15615,15684,15742,15818,15889,15963,16049,16099,16169,16234,17887,18040"
+                    }
+                },
+                {
+                    "source": "/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "42",
+                        "endOffsets": "93"
+                    },
+                    "to": {
+                        "startLines": "122",
+                        "startColumns": "4",
+                        "startOffsets": "7649",
+                        "endColumns": "42",
+                        "endOffsets": "7687"
                     }
                 },
                 {
@@ -9293,40 +9312,6 @@
                     }
                 },
                 {
-                    "source": "/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "42",
-                        "endOffsets": "93"
-                    },
-                    "to": {
-                        "startLines": "122",
-                        "startColumns": "4",
-                        "startOffsets": "7649",
-                        "endColumns": "42",
-                        "endOffsets": "7687"
-                    }
-                },
-                {
-                    "source": "/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/processDebugGoogleServices/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,137,241,350,470,578",
-                        "endColumns": "81,103,108,119,107,76",
-                        "endOffsets": "132,236,345,465,573,650"
-                    },
-                    "to": {
-                        "startLines": "157,158,159,160,161,227",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "11163,11245,11349,11458,11578,16355",
-                        "endColumns": "81,103,108,119,107,76",
-                        "endOffsets": "11240,11344,11453,11573,11681,16427"
-                    }
-                },
-                {
                     "source": "/Users/kaushikxo/.gradle/caches/9.7.1/transforms/02b8a8d1cda18908ccdc1475a6cbc432/transformed/lifecycle-viewmodel-release/res/values/values.xml",
                     "from": {
                         "startLines": "2",
@@ -9358,25 +9343,6 @@
                         "startOffsets": "7189,9362",
                         "endColumns": "67,166",
                         "endOffsets": "7252,9524"
-                    }
-                },
-                {
-                    "source": "/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "56",
-                        "endLines": "11",
-                        "endColumns": "12",
-                        "endOffsets": "446"
-                    },
-                    "to": {
-                        "startLines": "286",
-                        "startColumns": "4",
-                        "startOffsets": "19742",
-                        "endLines": "294",
-                        "endColumns": "12",
-                        "endOffsets": "20132"
                     }
                 },
                 {
@@ -9428,6 +9394,40 @@
                         "startOffsets": "6929",
                         "endColumns": "42",
                         "endOffsets": "6967"
+                    }
+                },
+                {
+                    "source": "/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/generated/res/processDebugGoogleServices/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,137,241,350,470,578",
+                        "endColumns": "81,103,108,119,107,76",
+                        "endOffsets": "132,236,345,465,573,650"
+                    },
+                    "to": {
+                        "startLines": "157,158,159,160,161,227",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "11163,11245,11349,11458,11578,16355",
+                        "endColumns": "81,103,108,119,107,76",
+                        "endOffsets": "11240,11344,11453,11573,11681,16427"
+                    }
+                },
+                {
+                    "source": "/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/res/values/colors.xml",
+                    "from": {
+                        "startLines": "1,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "16,61,112",
+                        "endColumns": "44,50,43",
+                        "endOffsets": "56,107,151"
+                    },
+                    "to": {
+                        "startLines": "21,22,23",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1553,1598,1649",
+                        "endColumns": "44,50,43",
+                        "endOffsets": "1593,1644,1688"
                     }
                 },
                 {

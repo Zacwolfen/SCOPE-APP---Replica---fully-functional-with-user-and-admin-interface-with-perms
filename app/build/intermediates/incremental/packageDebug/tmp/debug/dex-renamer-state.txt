@@ -1,12 +1,12 @@
-#Wed Aug 26 13:27:41 IST 2026
-base.0=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex
-base.3=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
-base.4=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
-base.5=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
-base.6=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
-base.7=/Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
+#Sat Aug 29 13:26:09 IST 2026
+base.0=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex
+base.3=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.4=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+base.5=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.6=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
+base.7=/Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes4.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex

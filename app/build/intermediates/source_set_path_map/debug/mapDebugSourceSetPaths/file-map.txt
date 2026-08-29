@@ -56,11 +56,11 @@ com.scopelocal.app-animation-release-54 /Users/kaushikxo/.gradle/caches/9.7.1/tr
 com.scopelocal.app-startup-runtime-1.1.1-55 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f3088eaabcc46627f77c7a213b3ad5f3/transformed/startup-runtime-1.1.1/res
 com.scopelocal.app-navigation-common-2.8.5-56 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f510831324c64d19c27f13a742aeabef/transformed/navigation-common-2.8.5/res
 com.scopelocal.app-material-ripple-release-57 /Users/kaushikxo/.gradle/caches/9.7.1/transforms/f6013b4d69cac140af32f6589d12421c/transformed/material-ripple-release/res
-com.scopelocal.app-pngs-58 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/pngs/debug
-com.scopelocal.app-res-59 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/processDebugGoogleServices
-com.scopelocal.app-resValues-60 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/generated/res/resValues/debug
-com.scopelocal.app-packageDebugResources-61 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.scopelocal.app-packageDebugResources-62 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.scopelocal.app-debug-63 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.scopelocal.app-debug-64 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/debug/res
-com.scopelocal.app-main-65 /Users/kaushikxo/Desktop/SCOPE - Snek - Final version copy/app/src/main/res
+com.scopelocal.app-pngs-58 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/generated/res/pngs/debug
+com.scopelocal.app-res-59 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/generated/res/processDebugGoogleServices
+com.scopelocal.app-resValues-60 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/generated/res/resValues/debug
+com.scopelocal.app-packageDebugResources-61 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.scopelocal.app-packageDebugResources-62 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.scopelocal.app-debug-63 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.scopelocal.app-debug-64 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/debug/res
+com.scopelocal.app-main-65 /Users/kaushikxo/Desktop/SCOPE COMPLETE UPDATED APP 2/app/src/main/res

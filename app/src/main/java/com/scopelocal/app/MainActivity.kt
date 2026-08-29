@@ -11,7 +11,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -71,6 +70,7 @@ private val Red = Color(0xFFE45B63)
 private val PageGray = Color(0xFFF7F7F7)
 private val RowGray = Color(0xFFF2F2F2)
 private val Border = Color(0xFFE0E0E0)
+private const val ADMIN_PIN = "291106"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,8 +141,7 @@ fun ScopeLocalApp() {
                         store = store,
                         cloud = cloud,
                         onMenu = { drawer = true },
-                        onOpen = { nav.navigate(it) },
-                        onSecretSettings = { demoSettings = true }
+                        onOpen = { nav.navigate(it) }
                     )
                 }
 
@@ -273,6 +272,10 @@ fun ScopeLocalApp() {
                     onOpen = { route ->
                         drawer = false
                         nav.navigate(route)
+                    },
+                    onSecretSettings = {
+                        drawer = false
+                        demoSettings = true
                     }
                 )
             }
@@ -307,7 +310,6 @@ fun PortalTopBar(
     title: String,
     onBack: (() -> Unit)? = null,
     onMenu: (() -> Unit)? = null,
-    onLongPressTitle: (() -> Unit)? = null,
     onRefresh: (() -> Unit)? = null,
     refreshing: Boolean = false
 ) {
@@ -345,15 +347,6 @@ fun PortalTopBar(
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 8.dp)
-                .pointerInput(onLongPressTitle) {
-                    if (onLongPressTitle != null) {
-                        detectTapGestures(
-                            onLongPress = {
-                                onLongPressTitle.invoke()
-                            }
-                        )
-                    }
-                }
         )
 
         if (onBack != null) {
@@ -434,8 +427,7 @@ fun HomeScreen(
     store: LocalStore,
     cloud: CloudRepository,
     onMenu: () -> Unit,
-    onOpen: (String) -> Unit,
-    onSecretSettings: () -> Unit
+    onOpen: (String) -> Unit
 ) {
     var refreshing by remember { mutableStateOf(false) }
     var lastUpdateMillis by remember { mutableStateOf(store.lastUpdateTimestamp()) }
@@ -478,7 +470,6 @@ fun HomeScreen(
         PortalTopBar(
             title = "Student Portal",
             onMenu = onMenu,
-            onLongPressTitle = onSecretSettings,
             onRefresh = { runRefresh() },
             refreshing = refreshing
         )
@@ -527,12 +518,33 @@ fun FeatureCard(feature: Feature, onClick: () -> Unit) {
 }
 
 @Composable
-fun DrawerOverlay(onClose: () -> Unit, onOpen: (String) -> Unit) {
+fun DrawerOverlay(
+    onClose: () -> Unit,
+    onOpen: (String) -> Unit,
+    onSecretSettings: () -> Unit
+) {
     Row(Modifier.fillMaxSize().background(Color(0x66000000))) {
         Column(Modifier.fillMaxWidth(0.92f).fillMaxHeight().shadow(8.dp).background(Color.White).padding(horizontal = 18.dp)) {
             PortalTopBar("Search", onBack = onClose)
             Spacer(Modifier.height(14.dp))
-            OutlinedTextField(value = "", onValueChange = {}, placeholder = { Text("Search", color = BrightBlue) }, leadingIcon = { Icon(Icons.Default.Search, null, tint = BrightBlue) }, singleLine = true, shape = RoundedCornerShape(50), colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black, focusedBorderColor = Color.Black), modifier = Modifier.fillMaxWidth().height(56.dp))
+            var searchQuery by remember { mutableStateOf("") }
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { value ->
+                    if (value == ADMIN_PIN) {
+                        searchQuery = ""
+                        onSecretSettings()
+                    } else {
+                        searchQuery = value
+                    }
+                },
+                placeholder = { Text("Search", color = BrightBlue) },
+                leadingIcon = { Icon(Icons.Default.Search, null, tint = BrightBlue) },
+                singleLine = true,
+                shape = RoundedCornerShape(50),
+                colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black, focusedBorderColor = Color.Black),
+                modifier = Modifier.fillMaxWidth().height(56.dp)
+            )
             Spacer(Modifier.height(10.dp))
             LazyColumn { items(features.filter { it.route != "home" }) { f ->
                 Row(Modifier.fillMaxWidth().clickable { onOpen(f.route) }.padding(vertical = 14.dp), verticalAlignment = Alignment.CenterVertically) {
